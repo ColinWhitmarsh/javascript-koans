@@ -35,12 +35,12 @@ describe("About Applying What We Have Learnt", function() {
 
   it("given I'm allergic to nuts and hate mushrooms, it should find a pizza I can eat (functional)", function () {
       var productsICanEat = products.filter(function(pizza) { 
-        return pizza.containsNuts === false }).filter(function(pizza) {
+        return pizza.containsNuts === false; }).filter(function(pizza) {
           if(_(pizza.ingredients).all(
-            function(ing) { return ing !== 'mushrooms' })
+            function(ing) { return ing !== 'mushrooms'; })
           )
-          return pizza
-      })
+          return pizza;
+      });
 
       expect(productsICanEat.length).toBe(1);
   });
@@ -62,11 +62,11 @@ describe("About Applying What We Have Learnt", function() {
   it("should add all the natural numbers below 1000 that are multiples of 3 or 5 (functional)", function () {
     var sum = _.reduce(_.range(1000),function(acc, n){
                 if (n % 3 === 0 || n % 5 === 0) {
-                  return acc + n
+                  return acc + n;
                 } else {
-                  return acc
+                  return acc;
                 }
-              })
+              });
       /* try chaining range() and reduce() */
     
     expect(233168).toBe(sum);
@@ -82,24 +82,24 @@ describe("About Applying What We Have Learnt", function() {
         }
     }
 
-    expect(ingredientCount['mushrooms']).toBe(2);
+    expect(ingredientCount.mushrooms).toBe(2);
   });
 
   it("should count the ingredient occurrence (functional)", function () {
     var ingredientCount = { "{ingredient name}": 0 };
 
     ingredientCount = _(products).chain()
-      .map(function(pizza) { return pizza.ingredients } )
+      .map(function(pizza) { return pizza.ingredients; } )
       .flatten()
       .reduce(function(acc, curr) { 
         acc[curr] = (acc[curr] || 0) + 1;
-        return acc
+        return acc;
         }, {})
       .value();
     /* chain() together map(), flatten() and reduce() */
-    console.log(ingredientCount)
+    console.log(ingredientCount);
 
-    expect(ingredientCount['mushrooms']).toBe(2);
+    expect(ingredientCount.mushrooms).toBe(2);
   });
 
   /*********************************************************************************/
